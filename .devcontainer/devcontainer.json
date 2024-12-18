@@ -11,5 +11,5 @@
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash"
     },
-    "postCreateCommand": "cmake -S laba1var9 -B build && git config --global --add safe.directory '*'"
+    "postCreateCommand": "apt-get update && apt-get install -y cmake && git config --global --add safe.directory '*'"
 }
