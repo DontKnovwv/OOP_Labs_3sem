@@ -12,7 +12,9 @@ FixedMemoryResource::~FixedMemoryResource() {
 }
 
 void* FixedMemoryResource::do_allocate(size_t bytes, size_t alignment) {
-    assert(bytes <= blockSize_ && "Requested memory exceeds block size.");
+    if (bytes > blockSize_) {
+        throw std::bad_alloc();
+    }
     void* ptr = std::aligned_alloc(alignment, bytes);
     if (!ptr) throw std::bad_alloc();
     allocations_[ptr] = bytes;
